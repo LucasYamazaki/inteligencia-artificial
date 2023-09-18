@@ -1,8 +1,9 @@
 import speech_recognition as sr
 import pyttsx3
 import datetime
-import wikipedia
 import pywhatkit
+import sys
+import datetime
 
 audio = sr.Recognizer()
 maquina = pyttsx3.init()
@@ -20,6 +21,7 @@ while True:
                 if 'lua' in comando:
                     comando = comando.replace('lua', '')
                     maquina.runAndWait()
+    
 
                 
 
@@ -34,17 +36,15 @@ while True:
             hora = datetime.datetime.now().strftime('%H:%M')
             maquina.say("Agora são" + hora)
             maquina.runAndWait()
-        elif 'procure por' in comando:
-            procurar = comando.replace('procure por', '')
-            maquina.say("procurando por" + procurar)
-            wikipedia.set_lang('pt')
-            resultado = wikipedia.summary(procurar,2)
-            maquina.say(resultado)
-            maquina.runAndWait()
+      
         elif 'tocar' in comando:
             musica = comando.replace('tocar', '')
             resultado = pywhatkit.playonyt(musica)
             maquina.say("tocando a musica " + musica)
             maquina.runAndWait()
+
+        elif 'encerrar programa' in comando:
+            print("Programa encerrado, obrigado")
+            sys.exit()
 
     comando_voz_usuario()
