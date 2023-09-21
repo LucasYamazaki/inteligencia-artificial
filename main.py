@@ -21,14 +21,13 @@ while True:
                 if 'lua' in comando:
                     comando = comando.replace('lua', '')
                     maquina.runAndWait()
-    
-
-                
-
+  
         except:
             print("Microfone não está ok.")
 
         return comando
+    
+    
 
     def comando_voz_usuario():
         comando = executa_comando()
@@ -43,8 +42,12 @@ while True:
             maquina.say("tocando a musica " + musica)
             maquina.runAndWait()
 
+        elif 'lista' in comando:
+            maquina.say("Qual lista gostaria de acessar? Mercado ou lembretes?")
+
         elif 'encerrar programa' in comando:
             print("Programa encerrado, obrigado")
             sys.exit()
+            print(comando)
 
     comando_voz_usuario()
